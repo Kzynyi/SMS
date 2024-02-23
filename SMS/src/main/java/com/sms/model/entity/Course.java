@@ -2,6 +2,7 @@ package com.sms.model.entity;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -10,6 +11,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -38,6 +41,22 @@ public class Course implements Serializable {
 	
 	@OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
 	private List<Module> modules;
+	
+	private LocalDateTime createdOn;
+	
+	private LocalDateTime updatedOn;
+	
+	@PrePersist
+	public void prePersist() {
+		this.createdOn = LocalDateTime.now();
+		this.updatedOn = LocalDateTime.now();
+		this.status = 1;
+	}
+	
+	@PreUpdate
+	public void preUpdate() {
+		this.updatedOn = LocalDateTime.now();
+	}
 	
 	
 }

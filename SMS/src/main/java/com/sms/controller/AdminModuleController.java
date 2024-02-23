@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/admin")
 public class AdminModuleController {
 
-	public ResponseEntity<Collection<Map<String, String>>> createModule(){
-		
-	}
+
 	
 }

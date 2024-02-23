@@ -62,6 +62,7 @@ public class Batch implements Serializable{
 	
 	@PrePersist
 	void prePersist() {
+		this.status = 1;
 		this.createdOn = LocalDateTime.now();
 		this.updatedOn = LocalDateTime.now();
 	}

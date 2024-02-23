@@ -1,6 +1,7 @@
 package com.sms.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -25,10 +26,9 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
 	@Query("UPDATE Course c SET c.status = 0 WHERE c.id = :id")
 	void terminateCourse(@Param("id") Long id);
 	
-	@Query("SELECT new com.sms.dto.CourseInfoDTO(c.name, c.description, c.modules, c.batches) "
-			+ "from Course c WHERE c.id = :id AND c.batches.status = 2 "
-			+ "AND c.modules.status = 1")
-	CourseInfoDTO findCourseInfo(@Param("id") Long id);
+	@Query("SELECT c from Course c JOIN c.batches batch JOIN c.modules module WHERE c.id = :id AND batch.status = 2 "
+			+ "AND module.status = 1")
+	Optional<Course> findCourseInfo(@Param("id") Long id);
 	
 	List<Course> findByNameContainingIgnoreCase(String name);
 	

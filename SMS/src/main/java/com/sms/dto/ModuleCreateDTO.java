@@ -3,7 +3,7 @@ package com.sms.dto;
 public record ModuleCreateDTO(
 		String name,
 		String description,
-		CourseDTO course,
+		Long courseId,
 		int status
 		) {
 

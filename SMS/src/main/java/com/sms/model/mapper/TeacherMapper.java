@@ -7,7 +7,7 @@ import com.sms.dto.TeacherCreateDTO;
 import com.sms.dto.TeacherStatusDTO;
 import com.sms.model.entity.Teacher;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface TeacherMapper {
 
 	@Mapping(target = "id", ignore = true)

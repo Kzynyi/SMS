@@ -129,7 +129,7 @@ public class SecurityConfig {
 	}
 	
 	@Bean
-	public JwtSecurityFilter jwtSecurityFilter(JwtUtil jwtUtil, UserDetailsService userDetailsService) {
+	public JwtSecurityFilter jwtSecurityFilter(JwtUtil jwtUtil,@Qualifier("uService") UserDetailsService userDetailsService) {
 		return new JwtSecurityFilter(jwtUtil, userDetailsService);
 	}
 }

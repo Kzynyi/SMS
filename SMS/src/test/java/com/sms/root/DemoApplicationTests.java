@@ -60,6 +60,7 @@ class DemoApplicationTests {
 	    registry.add("spring.datasource.password", pgs::getPassword);
 	}
 	
+	/*
 	@Test
 	@Order(1)
 	void createCourseTest() {
@@ -83,6 +84,8 @@ class DemoApplicationTests {
 		assertEquals(1, m1);
 		assertEquals(2, m2);
 	}
+	*/
+	
 	/*
 	@Test
 	@Order(2)

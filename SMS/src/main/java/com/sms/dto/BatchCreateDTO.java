@@ -7,7 +7,8 @@ public record BatchCreateDTO(
 		LocalDate startDate,
 		int studentLimit,
 		int status,
-		int courseId
+		Long courseId,
+		Long teacherId
 		) {
 
 }

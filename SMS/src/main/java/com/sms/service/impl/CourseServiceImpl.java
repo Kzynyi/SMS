@@ -23,6 +23,8 @@ import com.sms.model.mapper.CourseMapper;
 import com.sms.repository.CourseRepository;
 import com.sms.service.CourseService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
 @Transactional
 public class CourseServiceImpl implements CourseService {
@@ -92,7 +94,14 @@ public class CourseServiceImpl implements CourseService {
 
 	@Override
 	public CourseInfoDTO getCourseInfo(Long courseId) {
-		return courseRepository.findCourseInfo(courseId);
+		Optional<Course> result = courseRepository.findCourseInfo(courseId);
+		
+		if(result.isPresent()) {
+			CourseInfoDTO course = courseMapper.toCourseInfoDTO(result.get());
+			return course;
+		}
+		
+		return null;
 	}
 
 

@@ -1,6 +1,7 @@
 package com.sms.model.entity;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import com.sms.model.entity.id.ApplicationId;
 
@@ -9,6 +10,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,5 +37,19 @@ public class Application implements Serializable {
 	
 	private int status;
 	
+	private LocalDateTime createdOn;
 	
+	private LocalDateTime updateOn;
+	
+	@PrePersist
+	private void prePersist() {
+		this.status = 1;
+		this.createdOn = LocalDateTime.now();
+		this.updateOn = LocalDateTime.now();
+	}
+	
+	@PreUpdate
+	private void preUpdate() {
+		this.updateOn = LocalDateTime.now();
+	}
 }

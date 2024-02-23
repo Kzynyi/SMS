@@ -39,7 +39,7 @@ public class AdminCourseController {
 	
 	@GetMapping("/courses")
 	public ResponseEntity<PagerDTO<CourseDTO>> allCourses(@RequestParam(defaultValue = "0") int page,
-			  @RequestParam(defaultValue = "10") int size) {
+			@RequestParam(defaultValue = "10") int size) {
 		PagerDTO<CourseDTO> courses = courseService.getAllActiveCourses(page, size);
 		return ResponseEntity.ok(courses);
 	}

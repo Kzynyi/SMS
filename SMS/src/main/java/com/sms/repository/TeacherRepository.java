@@ -20,7 +20,7 @@ public interface TeacherRepository extends JpaRepository<Teacher, Long> {
 	Optional<Teacher> findByEmail(String email);
 	
 	@Modifying
-	@Query("UPDATE Teacher t SET s.status = 4 WHERE s.id = :id")
+	@Query("UPDATE Teacher t SET t.status = 4 WHERE t.id = :id")
 	void retireTeacher(@Param("id") Long id);
 	
 	@Query("SELECT new com.sms.dto.TeacherDTO(t.id,t.name,t.email) FROM Teacher t")
